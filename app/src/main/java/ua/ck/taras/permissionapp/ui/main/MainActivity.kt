@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.main_activity.*
 import ua.ck.taras.permissionapp.R
 import ua.ck.taras.permissionapp.common.showToast
+import ua.ck.taras.permissionapp.model.Task
+import ua.ck.taras.permissionapp.model.User
 import ua.ck.taras.permissionapp.ui.second.SecondActivityContract
 import ua.ck.taras.permissionapp.ui.second.SecondActivity
 
@@ -86,6 +88,38 @@ class MainActivity : AppCompatActivity() {
                     Manifest.permission.CAMERA
                 )
             )
+        }
+
+        // Send Parcel List
+        activityButtonSendParcelList.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra(
+                SecondActivity.INTENT_PARCEL_USER_LIST, arrayListOf(
+                    User(
+                        id = 1,
+                        name = "User_1",
+                        taskList = listOf(Task(id = 1, title = "Task_1")),
+                        surname = "Surname_1",
+                        age = 1,
+                        salary = "Salary_1"
+                    ), User(
+                        id = 2,
+                        name = "User_2",
+                        taskList = listOf(Task(id = 1, title = "Task_2")),
+                        surname = "Surname_2",
+                        age = 2,
+                        salary = "Salary_2"
+                    ), User(
+                        id = 3,
+                        name = "User_3",
+                        taskList = listOf(Task(id = 1, title = "Task_3")),
+                        surname = "Surname_3",
+                        age = 3,
+                        salary = "Salary_3"
+                    )
+                )
+            )
+            startActivity(intent)
         }
     }
 }
